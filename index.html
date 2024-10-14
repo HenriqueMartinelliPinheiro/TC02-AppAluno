@@ -1,32 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    
-    <script>
-        function fetchData() {
-            fetch() 
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro na requisição: ' + response.status);
-                    }
-                    return response.json(); 
-                })
-                .then(data => {
-                    console.log('Dados recebidos:', data);
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                });
-        }
-    </script>
-
-    <title>Login</title>
-</head>
-<body>
-    <button  onclick="fetchData()" class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="button">Entrar com&nbsp;<span class="text-black">gov.br</span>
-    </button>   
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
