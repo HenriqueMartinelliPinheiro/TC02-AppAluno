@@ -24,7 +24,7 @@ const EventList: React.FC = () => {
 
 	return (
 		<div>
-			<h3 className='text-2xl font-semibold mb-4'>Eventos Atuais</h3>
+			<h3 className='text-2xl sm:text-3xl font-bold text-center mb-8'>Eventos Atuais</h3>
 			{data && data.events.length > 0 ? (
 				<ul>
 					{data.events

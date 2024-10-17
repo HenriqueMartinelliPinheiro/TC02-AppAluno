@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { getEventById } from '../services/getEventByIdService';
-import { Event } from '@/interfaces/EventInterface'; // Importando as interfaces
+import { Event } from '@/interfaces/EventInterface';
 
 export const useGetEventById = (eventId: number) => {
-	const [event, setEvent] = useState<Event | null>(null); // Tipando o estado do evento
+	const [event, setEvent] = useState<Event | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 

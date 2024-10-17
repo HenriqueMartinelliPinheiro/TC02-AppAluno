@@ -18,6 +18,7 @@ export const useCreateAttendance = () => {
 			setData(response);
 		} catch (err: any) {
 			setError(err.message);
+			throw err;
 		} finally {
 			setLoading(false);
 		}

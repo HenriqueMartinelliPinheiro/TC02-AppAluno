@@ -3,9 +3,9 @@ import { apiRoutes } from '../config/apiRoutes';
 export interface CreateAttendanceRequest {
 	studentName: string;
 	studentRegistration: string;
-	eventActivityId: string;
+	eventActivityId: number;
 	studentCpf: string;
-	eventId: string;
+	eventId: number;
 	latitude: number;
 	longitude: number;
 }
