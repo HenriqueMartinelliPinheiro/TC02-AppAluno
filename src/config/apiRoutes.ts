@@ -1,4 +1,4 @@
-const apiBaseUrl = 'http://localhost:4000';
+const apiBaseUrl = 'http://localhost:4000/api';
 
 export const apiRoutes = {
 	createAttendance: `${apiBaseUrl}/createAttendance`,
