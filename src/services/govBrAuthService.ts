@@ -4,7 +4,6 @@ const govBrService = {
 		const clientId = import.meta.env.VITE_GOVBR_CLIENT_ID || '';
 		const redirectUri = import.meta.env.VITE_GOVBR_REDIRECT_URI || '';
 		const scopes = import.meta.env.VITE_GOVBR_SCOPES || '';
-
 		if (!baseUrl || !clientId || !redirectUri || !scopes) {
 			console.error('Variáveis de ambiente não estão definidas corretamente.');
 			return '';

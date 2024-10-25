@@ -17,9 +17,9 @@ const HomePage: React.FC = () => {
 		}
 	}, [location]);
 
-	// Função para enviar o código ao backend e trocar por um token
 	const fetchAccessToken = async (code: string) => {
 		try {
+			console.log(code);
 			const response = await fetch('http://seuservidor.com/api/govbr/token', {
 				method: 'POST',
 				headers: {
