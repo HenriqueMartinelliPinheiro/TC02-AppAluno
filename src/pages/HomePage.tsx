@@ -8,12 +8,15 @@ const HomePage: React.FC = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		console.log('useEffect disparado, verificando a URL');
 		const queryParams = new URLSearchParams(location.search);
 		const code = queryParams.get('code');
 
 		if (code) {
-			console.log('Code', code);
+			console.log('Code:', code);
 			fetchAccessToken(code);
+		} else {
+			console.log('Nenhum código encontrado na URL.');
 		}
 	}, [location]);
 
