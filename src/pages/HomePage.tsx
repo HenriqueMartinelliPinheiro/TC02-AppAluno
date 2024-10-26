@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Header } from '../utils/Header';
 import EventList from '../components/event/EventList';
-import { apiRoutes } from '@/config/apiRoutes';
 
 const HomePage: React.FC = () => {
 	const location = useLocation();
@@ -24,12 +23,26 @@ const HomePage: React.FC = () => {
 	const fetchAccessToken = async (code: string) => {
 		try {
 			console.log(code);
-			const response = await fetch(`${apiRoutes.getGovbrToken}`, {
+			const config = {
+				URL_PROVIDER: import.meta.env.VITE_GOVBR_URL_PROVIDER,
+				REDIRECT_URI: import.meta.env.VITE_GOVBR_REDIRECT_URI,
+				CLIENT_ID: import.meta.env.VITE_GOVBR_CLIENT_ID,
+				SECRET: import.meta.env.VITE_GOVBR_SECRET,
+				SCOPES: import.meta.env.VITE_GOVBR_SCOPES,
+			};
+
+			const response = await fetch(`${config.URL_PROVIDER}/token`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ code }),
+				body: JSON.stringify({
+					code,
+					redirect_uri: config.REDIRECT_URI,
+					client_id: config.CLIENT_ID,
+					client_secret: config.SECRET,
+					grant_type: 'authorization_code',
+				}),
 			});
 
 			if (response.ok) {
@@ -45,7 +58,7 @@ const HomePage: React.FC = () => {
 				console.error('Erro ao obter o token de acesso:', response.statusText);
 			}
 		} catch (error) {
-			console.error('Erro na requisição ao backend:', error);
+			console.error('Erro na requisição ao govbr:', error);
 		}
 	};
 
@@ -64,3 +77,5 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
+// Removido o código da API no backend, pois agora o frontend realiza a troca do código pelo token diretamente.
