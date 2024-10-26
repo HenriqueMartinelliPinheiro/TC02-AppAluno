@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Header } from '../utils/Header';
 import EventList from '../components/event/EventList';
+import { apiRoutes } from '@/config/apiRoutes';
 
 const HomePage: React.FC = () => {
 	const location = useLocation();
@@ -23,7 +24,7 @@ const HomePage: React.FC = () => {
 	const fetchAccessToken = async (code: string) => {
 		try {
 			console.log(code);
-			const response = await fetch('https://cti.videira.ifc.edu.br/api/govbr/token', {
+			const response = await fetch(`${apiRoutes.getGovbrToken}`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
