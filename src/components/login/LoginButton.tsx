@@ -1,7 +1,7 @@
 import React from 'react';
 import useGovBrAuth from '../../hooks/useGovBrAuth';
 
-const LoginButton: React.FC = () => {
+export const LoginButton: React.FC = () => {
 	const { redirectToGovBr } = useGovBrAuth();
 
 	return (
@@ -13,5 +13,3 @@ const LoginButton: React.FC = () => {
 		</button>
 	);
 };
-
-export default LoginButton;

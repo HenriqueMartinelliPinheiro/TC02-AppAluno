@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginButton from '../components/login/LoginButton';
+import { LoginButton } from '../components/login/LoginButton';
 
 export const LoginPage: React.FC = () => {
 	return (

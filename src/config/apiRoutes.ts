@@ -6,5 +6,6 @@ export const apiRoutes = {
 	createAttendance: `${apiBaseUrl}/createAttendance`,
 	fetchAllEvents: `${apiBaseUrl}/fetchEvents`,
 	getEventByIdStudent: `${apiBaseUrl}/getEventByIdStudent`,
-	getGovbrToken: `${apiBaseUrl}/govbr/token`,
+	getGovbrToken: `${apiBaseUrl}/auth/exchange`,
+	govbrLogin: `${apiBaseUrl}/auth/login`,
 };

@@ -23,42 +23,28 @@ const HomePage: React.FC = () => {
 	const fetchAccessToken = async (code: string) => {
 		try {
 			console.log(code);
-			const config = {
-				URL_PROVIDER: import.meta.env.VITE_GOVBR_URL_PROVIDER,
-				REDIRECT_URI: import.meta.env.VITE_GOVBR_REDIRECT_URI,
-				CLIENT_ID: import.meta.env.VITE_GOVBR_CLIENT_ID,
-				SECRET: import.meta.env.VITE_GOVBR_SECRET,
-				SCOPES: import.meta.env.VITE_GOVBR_SCOPES,
-			};
-
-			const response = await fetch(`${config.URL_PROVIDER}/token`, {
+			const response = await fetch('https://cti.videira.ifc.edu.br/api/govbr/token', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({
-					code,
-					redirect_uri: config.REDIRECT_URI,
-					client_id: config.CLIENT_ID,
-					client_secret: config.SECRET,
-					grant_type: 'authorization_code',
-				}),
+				body: JSON.stringify({ code }),
 			});
 
 			if (response.ok) {
 				const data = await response.json();
 				console.log('Token de acesso recebido:', data);
 
-				// Armazena o token no localStorage ou em um estado global
+				// Aqui você pode armazenar o token no localStorage ou em um estado global
 				localStorage.setItem('govbr_access_token', data.access_token);
 
-				// Redireciona para a Home sem o parâmetro `code` na URL
+				// Redirecionar para a Home sem o parâmetro `code` na URL
 				navigate('/', { replace: true });
 			} else {
 				console.error('Erro ao obter o token de acesso:', response.statusText);
 			}
 		} catch (error) {
-			console.error('Erro na requisição ao govbr:', error);
+			console.error('Erro na requisição ao backend:', error);
 		}
 	};
 
@@ -77,5 +63,3 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
-
-// Removido o código da API no backend, pois agora o frontend realiza a troca do código pelo token diretamente.
