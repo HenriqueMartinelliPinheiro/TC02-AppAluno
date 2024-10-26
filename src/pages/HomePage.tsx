@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Header } from '../utils/Header';
 import EventList from '../components/event/EventList';
+import { apiRoutes } from '@/config/apiRoutes';
 
 const HomePage: React.FC = () => {
 	const location = useLocation();
@@ -23,7 +24,7 @@ const HomePage: React.FC = () => {
 	const fetchAccessToken = async (code: string) => {
 		try {
 			console.log(code);
-			const response = await fetch('http://seuservidor.com/api/govbr/token', {
+			const response = await fetch(`${apiRoutes.getGovbrToken}`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -35,10 +36,10 @@ const HomePage: React.FC = () => {
 				const data = await response.json();
 				console.log('Token de acesso recebido:', data);
 
-				// Aqui você pode armazenar o token no localStorage ou em um estado global
+				// Armazena o token no localStorage ou em um estado global
 				localStorage.setItem('govbr_access_token', data.access_token);
 
-				// Redirecionar para a Home sem o parâmetro `code` na URL
+				// Redireciona para a Home sem o parâmetro `code` na URL
 				navigate('/', { replace: true });
 			} else {
 				console.error('Erro ao obter o token de acesso:', response.statusText);
