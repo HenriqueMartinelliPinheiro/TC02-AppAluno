@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
 	return (
 		<header className='w-full bg-green-300 shadow-md p-4'>
 			<div className='flex flex-wrap justify-between items-center max-w-screen-xl mx-auto'>
-				<a href='/home' className='mb-2 sm:mb-0'>
+				<a href='/' className='mb-2 sm:mb-0'>
 					<img
 						src='/bannerIFC.png'
 						alt='Banner IFC'

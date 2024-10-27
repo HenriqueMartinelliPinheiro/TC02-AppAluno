@@ -42,7 +42,7 @@ const useGovBrAuth = () => {
 					console.error('Erro na requisição ao backend:', error);
 					navigate('/login', { replace: true });
 				} finally {
-					setIsAuthenticating(false); // Finalizando o processo de autenticação
+					setIsAuthenticating(false);
 				}
 			} else {
 				console.log('No code found in URL.');

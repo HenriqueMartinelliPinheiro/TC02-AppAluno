@@ -22,9 +22,7 @@ export const EventPage: React.FC = () => {
 	const currentDate = new Date();
 
 	const studentData = {
-		studentName: 'Carlos Santana',
-		studentRegistration: '20230001',
-		studentCpf: '22233344455',
+		studentCpf: localStorage.getItem('studentCpf') || '',
 	};
 
 	const [userLocation, setUserLocation] = useState<{

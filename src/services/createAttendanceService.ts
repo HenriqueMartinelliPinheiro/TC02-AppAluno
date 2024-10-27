@@ -1,8 +1,6 @@
 import { apiRoutes } from '../config/apiRoutes';
 
 export interface CreateAttendanceRequest {
-	studentName: string;
-	studentRegistration: string;
 	eventActivityId: number;
 	studentCpf: string;
 	eventId: number;
@@ -25,6 +23,7 @@ export const createAttendance = async (
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(attendanceData),
+			credentials: 'include',
 		});
 
 		if (!response.ok) {
