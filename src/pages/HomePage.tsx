@@ -1,4 +1,3 @@
-// pages/HomePage.tsx
 import React from 'react';
 import { Header } from '../utils/Header';
 import EventList from '../components/event/EventList';
