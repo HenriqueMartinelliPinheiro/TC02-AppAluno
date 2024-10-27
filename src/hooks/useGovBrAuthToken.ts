@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext'; // Acesso direto ao contexto
 import { apiRoutes } from '@/config/apiRoutes';
 
 const useGovBrAuth = () => {
+	console.log('useGovBrAuth');
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { setStudentCpf } = useAuth();
