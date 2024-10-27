@@ -5,7 +5,6 @@ import useGovBrAuth from '../hooks/useGovBrAuthToken';
 
 const HomePage: React.FC = () => {
 	useGovBrAuth();
-	console.log('HomePage');
 	return (
 		<div className='flex flex-col min-h-screen'>
 			<Header />

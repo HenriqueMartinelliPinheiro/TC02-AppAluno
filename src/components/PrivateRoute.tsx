@@ -10,10 +10,8 @@ interface PrivateRouteProps {
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ element }) => {
 	const { isAuthenticated, loading } = useAuth();
 
-	console.log('PrivateRoute check:', { isAuthenticated, loading });
 
 	if (loading) {
-		console.log('Loading in PrivateRoute...');
 		return null;
 	}
 

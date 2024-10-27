@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext'; // Acesso direto ao contexto
 import { apiRoutes } from '@/config/apiRoutes';
 
 const useGovBrAuth = () => {
-	console.log('useGovBrAuth');
+	console.log
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { setStudentCpf } = useAuth();
@@ -13,7 +13,6 @@ const useGovBrAuth = () => {
 		const authenticate = async () => {
 			const queryParams = new URLSearchParams(location.search);
 			const code = queryParams.get('code');
-			console.log('Code found in URL:', code);
 
 			if (code) {
 				try {
@@ -25,14 +24,10 @@ const useGovBrAuth = () => {
 						body: JSON.stringify({ code }),
 					});
 
-					console.log('Fetch response status:', response.status);
-					console.log;
 					if (response.ok) {
 						const data = await response.json();
-						console.log('Response data:', data);
 						if (data.studentCpf) {
 							setStudentCpf(data.studentCpf);
-							console.log('studentCpf set in fetchAccessToken:', data.studentCpf);
 							navigate('/', { replace: true });
 						} else {
 							console.error('studentCpf not found in response data.');
