@@ -1,3 +1,4 @@
+// contexts/AuthContext.tsx
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 interface AuthContextProps {
@@ -18,22 +19,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		setStudentCpfState(cpf);
 		if (cpf) {
 			localStorage.setItem('studentCpf', cpf);
-			console.log('studentCpf saved to localStorage:', cpf); // Log para confirmar o armazenamento
+			console.log('studentCpf saved to localStorage:', cpf); // Confirmação de armazenamento
 		} else {
 			localStorage.removeItem('studentCpf');
-			console.log('studentCpf removed from localStorage'); // Log para remoção
+			console.log('studentCpf removed from localStorage'); // Confirmação de remoção
 		}
 	};
 
-	// contexts/AuthContext.tsx
 	useEffect(() => {
 		const savedCpf = localStorage.getItem('studentCpf');
 		if (savedCpf) {
 			setStudentCpfState(savedCpf);
-			console.log('studentCpf loaded from localStorage:', savedCpf); // Verificação
+			console.log('studentCpf loaded from localStorage:', savedCpf);
+		} else {
+			console.log('No studentCpf found in localStorage');
 		}
 		setLoading(false);
-		console.log('Loading complete'); // Finaliza o carregamento
+		console.log('Loading complete');
 	}, []);
 
 	const isAuthenticated = !!studentCpf;

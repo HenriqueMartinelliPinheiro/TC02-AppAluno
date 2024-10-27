@@ -1,3 +1,4 @@
+// hooks/useGovBrAuth.ts
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthService } from '../services/authService';
@@ -8,15 +9,17 @@ const useGovBrAuth = () => {
 	const { fetchAccessToken } = useAuthService();
 
 	useEffect(() => {
+		console.log('Running useGovBrAuth'); // Verifica se o hook está sendo chamado
+
 		const authenticate = async () => {
 			const queryParams = new URLSearchParams(location.search);
 			const code = queryParams.get('code');
 
-			console.log('Code found in URL:', code); // Verificação
+			console.log('Code found in URL:', code); // Verifica o código na URL
 
 			if (code) {
 				const success = await fetchAccessToken(code);
-				console.log('Authentication success:', success); // Verifica se `fetchAccessToken` foi bem-sucedido
+				console.log('Authentication success:', success);
 
 				if (success) {
 					navigate('/', { replace: true });
@@ -25,7 +28,7 @@ const useGovBrAuth = () => {
 					navigate('/login', { replace: true });
 				}
 			} else {
-				console.log('No code found in URL.'); // Caso o código não esteja presente
+				console.log('No code found in URL.'); // Log se não encontrar o código
 			}
 		};
 
