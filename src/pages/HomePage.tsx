@@ -1,53 +1,11 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+// pages/HomePage.tsx
+import React from 'react';
 import { Header } from '../utils/Header';
 import EventList from '../components/event/EventList';
-import { apiRoutes } from '@/config/apiRoutes';
+import useGovBrAuthToken from '../hooks/useGovBrAuthToken';
 
 const HomePage: React.FC = () => {
-	const location = useLocation();
-	const navigate = useNavigate();
-
-	useEffect(() => {
-		console.log('useEffect disparado, verificando a URL');
-		const queryParams = new URLSearchParams(location.search);
-		const code = queryParams.get('code');
-
-		if (code) {
-			console.log('Code:', code);
-			fetchAccessToken(code);
-		} else {
-			console.log('Nenhum código encontrado na URL.');
-		}
-	}, [location]);
-
-	const fetchAccessToken = async (code: string) => {
-		try {
-			console.log(code);
-			const response = await fetch(`${apiRoutes.getGovbrToken}`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ code }),
-			});
-
-			if (response.ok) {
-				const data = await response.json();
-				console.log('Token de acesso recebido:', data);
-
-				// Aqui você pode armazenar o token no localStorage ou em um estado global
-				localStorage.setItem('govbr_access_token', data.access_token);
-
-				// Redirecionar para a Home sem o parâmetro `code` na URL
-				navigate('/', { replace: true });
-			} else {
-				console.error('Erro ao obter o token de acesso:', response.statusText);
-			}
-		} catch (error) {
-			console.error('Erro na requisição ao backend:', error);
-		}
-	};
+	useGovBrAuthToken();
 
 	return (
 		<div className='flex flex-col min-h-screen'>

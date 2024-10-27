@@ -1,16 +1,16 @@
-import React from 'react';
 import { Button } from '../components/ui/button';
 import { LogOut } from 'lucide-react';
-// import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export const Header: React.FC = () => {
-	// const { logout, loading } = useAuth();
+	const { clearAuthData } = useAuth();
 	const navigate = useNavigate();
 
-	// if (loading) {
-	//   return null;
-	// }
+	const handleLogout = () => {
+		clearAuthData();
+		navigate('/login');
+	};
 
 	return (
 		<header className='w-full bg-green-300 shadow-md p-4'>
@@ -23,13 +23,9 @@ export const Header: React.FC = () => {
 					/>
 				</a>
 				<div className='flex items-center space-x-4'>
-					{/* Botão de Logout */}
 					<Button
 						className='flex items-center bg-green-600 text-white hover:bg-gray-800 rounded-md px-4 py-2'
-						onClick={() => {
-							// logout();
-							navigate('/home');
-						}}>
+						onClick={handleLogout}>
 						<LogOut className='px-1' /> Sair
 					</Button>
 				</div>
