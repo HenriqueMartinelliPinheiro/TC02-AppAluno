@@ -8,10 +8,10 @@ import PrivateRoute from './components/PrivateRoute';
 
 const App: React.FC = () => {
 	return (
-		<Router>
-			<Routes>
-				<Route path='/login' element={<LoginPage />} />
-				<AuthProvider>
+		<AuthProvider>
+			<Router>
+				<Routes>
+					<Route path='/login' element={<LoginPage />} />
 					<Route path='/home' element={<PrivateRoute element={<HomePage />} />} />
 					<Route
 						path='/evento/:eventId'
@@ -19,9 +19,9 @@ const App: React.FC = () => {
 					/>
 
 					<Route path='/' element={<PrivateRoute element={<HomePage />} />} />
-				</AuthProvider>
-			</Routes>
-		</Router>
+				</Routes>
+			</Router>
+		</AuthProvider>
 	);
 };
 
