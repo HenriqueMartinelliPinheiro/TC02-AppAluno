@@ -1,18 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext'; // Acesso direto ao contexto
+import { useAuth } from '../contexts/AuthContext';
 import { apiRoutes } from '@/config/apiRoutes';
 
 const useGovBrAuth = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { setStudentCpf } = useAuth();
+	const [isAuthenticating, setIsAuthenticating] = useState(false);
+
 	useEffect(() => {
 		const authenticate = async () => {
 			const queryParams = new URLSearchParams(location.search);
 			const code = queryParams.get('code');
 
-			if (code) {
+			if (code && !isAuthenticating) {
+				setIsAuthenticating(true); // Iniciando o processo de autenticação
 				try {
 					const response = await fetch(`${apiRoutes.getGovbrToken}`, {
 						method: 'POST',
@@ -38,6 +41,8 @@ const useGovBrAuth = () => {
 				} catch (error) {
 					console.error('Erro na requisição ao backend:', error);
 					navigate('/login', { replace: true });
+				} finally {
+					setIsAuthenticating(false); // Finalizando o processo de autenticação
 				}
 			} else {
 				console.log('No code found in URL.');
@@ -45,7 +50,7 @@ const useGovBrAuth = () => {
 		};
 
 		authenticate();
-	}, [location.search, setStudentCpf, navigate]);
+	}, [location.search, setStudentCpf, navigate, isAuthenticating]);
 };
 
 export default useGovBrAuth;
