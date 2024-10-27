@@ -4,11 +4,11 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export const Header: React.FC = () => {
-	const { clearAuthData } = useAuth();
+	const { logout } = useAuth();
 	const navigate = useNavigate();
 
 	const handleLogout = () => {
-		clearAuthData();
+		logout();
 		navigate('/login');
 	};
 

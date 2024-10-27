@@ -17,6 +17,7 @@ const useGovBrAuth = () => {
 				const success = await fetchAccessToken(code);
 
 				if (success) {
+					console.log('Autenticado com gov.br.');
 					navigate('/', { replace: true });
 				} else {
 					console.error('Erro ao autenticar com gov.br.');
