@@ -7,8 +7,7 @@ import { apiRoutes } from '@/config/apiRoutes';
 const useGovBrAuth = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
-	const { setStudentCpf } = useAuth(); // Acessa diretamente `setStudentCpf`
-
+	const { setStudentCpf } = useAuth();
 	useEffect(() => {
 		const authenticate = async () => {
 			const queryParams = new URLSearchParams(location.search);
@@ -29,6 +28,7 @@ const useGovBrAuth = () => {
 
 					if (response.ok) {
 						const data = await response.json();
+						console.log('Response data:', data);
 						if (data.studentCpf) {
 							setStudentCpf(data.studentCpf); // Definição direta no contexto
 							console.log('studentCpf set in fetchAccessToken:', data.studentCpf);
