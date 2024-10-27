@@ -7,6 +7,8 @@ export const useAuthService = () => {
 
 	const fetchAccessToken = async (code: string): Promise<boolean> => {
 		try {
+			console.log('Calling fetchAccessToken with code:', code);
+
 			const response = await fetch(`${apiRoutes.getGovbrToken}`, {
 				method: 'POST',
 				headers: {
@@ -15,12 +17,12 @@ export const useAuthService = () => {
 				body: JSON.stringify({ code }),
 			});
 
-			console.log('Fetch response status:', response.status); // Log do status da resposta
+			console.log('Fetch response status:', response.status);
 
 			if (response.ok) {
 				const data = await response.json();
-				setStudentCpf(data.studentCpf);
-				console.log('studentCpf set in fetchAccessToken:', data.studentCpf); // Verificação
+				setStudentCpf(data.studentCpf); // Define `studentCpf` no contexto
+				console.log('studentCpf set in fetchAccessToken:', data.studentCpf); // Confirmação
 				return true;
 			} else {
 				console.error('Erro ao obter o token de acesso:', response.statusText);

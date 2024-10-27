@@ -9,17 +9,17 @@ const useGovBrAuth = () => {
 	const { fetchAccessToken } = useAuthService();
 
 	useEffect(() => {
-		console.log('Running useGovBrAuth'); // Verifica se o hook está sendo chamado
+		console.log('Running useGovBrAuth'); // Confirma se o hook está sendo executado
 
 		const authenticate = async () => {
 			const queryParams = new URLSearchParams(location.search);
 			const code = queryParams.get('code');
 
-			console.log('Code found in URL:', code); // Verifica o código na URL
+			console.log('Code found in URL:', code); // Verifica o código
 
 			if (code) {
 				const success = await fetchAccessToken(code);
-				console.log('Authentication success:', success);
+				console.log('Authentication success:', success); // Confirma sucesso ou falha
 
 				if (success) {
 					navigate('/', { replace: true });
@@ -28,7 +28,7 @@ const useGovBrAuth = () => {
 					navigate('/login', { replace: true });
 				}
 			} else {
-				console.log('No code found in URL.'); // Log se não encontrar o código
+				console.log('No code found in URL.'); // Confirma ausência de código
 			}
 		};
 

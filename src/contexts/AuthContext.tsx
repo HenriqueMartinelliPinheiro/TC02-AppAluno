@@ -15,16 +15,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [studentCpf, setStudentCpfState] = useState<string | null>(null);
 	const [loading, setLoading] = useState(true);
 
-	const setStudentCpf = (cpf: string | null) => {
-		setStudentCpfState(cpf);
-		if (cpf) {
-			localStorage.setItem('studentCpf', cpf);
-			console.log('studentCpf saved to localStorage:', cpf); // Confirmação de armazenamento
-		} else {
-			localStorage.removeItem('studentCpf');
-			console.log('studentCpf removed from localStorage'); // Confirmação de remoção
-		}
-	};
+const setStudentCpf = (cpf: string | null) => {
+    setStudentCpfState(cpf);
+    if (cpf) {
+        localStorage.setItem('studentCpf', cpf);
+        console.log('studentCpf saved to localStorage:', cpf); // Log para confirmação
+    } else {
+        localStorage.removeItem('studentCpf');
+        console.log('studentCpf removed from localStorage'); // Confirmação de remoção
+    }
+};
+
 
 	useEffect(() => {
 		const savedCpf = localStorage.getItem('studentCpf');
