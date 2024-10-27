@@ -15,6 +15,8 @@ export const useAuthService = () => {
 				body: JSON.stringify({ code }),
 			});
 
+			console.log('Fetch response status:', response.status); // Log do status da resposta
+
 			if (response.ok) {
 				const data = await response.json();
 				setStudentCpf(data.studentCpf);
