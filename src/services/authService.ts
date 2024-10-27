@@ -18,7 +18,7 @@ export const useAuthService = () => {
 			if (response.ok) {
 				const data = await response.json();
 				setStudentCpf(data.studentCpf);
-				console.log('studentCpf stored in context:', data.studentCpf);
+				console.log('studentCpf set in fetchAccessToken:', data.studentCpf); // Verificação
 				return true;
 			} else {
 				console.error('Erro ao obter o token de acesso:', response.statusText);

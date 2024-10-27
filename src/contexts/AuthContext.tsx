@@ -25,11 +25,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		}
 	};
 
+	// contexts/AuthContext.tsx
 	useEffect(() => {
 		const savedCpf = localStorage.getItem('studentCpf');
 		if (savedCpf) {
 			setStudentCpfState(savedCpf);
-			console.log('studentCpf loaded from localStorage:', savedCpf); // Log para verificar a recuperação
+			console.log('studentCpf loaded from localStorage:', savedCpf); // Verificação
 		}
 		setLoading(false);
 		console.log('Loading complete'); // Finaliza o carregamento
