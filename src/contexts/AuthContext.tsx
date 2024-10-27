@@ -11,13 +11,22 @@ interface AuthContextProps {
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-	const [studentCpf, setStudentCpf] = useState<string | null>(null);
+	const [studentCpf, setStudentCpfState] = useState<string | null>(null);
 	const [loading, setLoading] = useState(true);
+
+	const setStudentCpf = (cpf: string | null) => {
+		setStudentCpfState(cpf);
+		if (cpf) {
+			localStorage.setItem('studentCpf', cpf);
+		} else {
+			localStorage.removeItem('studentCpf');
+		}
+	};
 
 	useEffect(() => {
 		const savedCpf = localStorage.getItem('studentCpf');
 		if (savedCpf) {
-			setStudentCpf(savedCpf);
+			setStudentCpfState(savedCpf);
 		}
 		setLoading(false);
 	}, []);
@@ -26,7 +35,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 	const logout = () => {
 		setStudentCpf(null);
-		localStorage.removeItem('studentCpf');
 	};
 
 	return (
