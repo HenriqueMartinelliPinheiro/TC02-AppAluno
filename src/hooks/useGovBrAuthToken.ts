@@ -1,3 +1,4 @@
+// hooks/useGovBrAuth.ts
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthService } from '../services/authService';
@@ -13,13 +14,19 @@ const useGovBrAuth = () => {
 			const code = queryParams.get('code');
 
 			if (code) {
-				await fetchAccessToken(code);
-				navigate('/', { replace: true });
+				const success = await fetchAccessToken(code);
+
+				if (success) {
+					navigate('/', { replace: true });
+				} else {
+					console.error('Erro ao autenticar com gov.br.');
+					navigate('/login', { replace: true });
+				}
 			}
 		};
 
 		authenticate();
-	}, [location, fetchAccessToken, navigate]);
+	}, [location.search, fetchAccessToken, navigate]);
 };
 
 export default useGovBrAuth;
