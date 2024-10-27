@@ -15,12 +15,10 @@ export const useAuthService = () => {
 				body: JSON.stringify({ code }),
 			});
 
-			console.log('Fetch response status:', response.status);
-
 			if (response.ok) {
 				const data = await response.json();
 				setStudentCpf(data.studentCpf);
-				console.log('Token de acesso obtido com sucesso:', data.studentCpf);
+				console.log('studentCpf stored in context:', data.studentCpf);
 				return true;
 			} else {
 				console.error('Erro ao obter o token de acesso:', response.statusText);
