@@ -1,10 +1,10 @@
 import React from 'react';
 import { Header } from '../utils/Header';
 import EventList from '../components/event/EventList';
-import useGovBrAuthToken from '../hooks/useGovBrAuthToken';
+import useGovBrAuth from '../hooks/useGovBrAuthToken';
 
 const HomePage: React.FC = () => {
-	useGovBrAuthToken();
+	useGovBrAuth();
 
 	return (
 		<div className='flex flex-col min-h-screen'>

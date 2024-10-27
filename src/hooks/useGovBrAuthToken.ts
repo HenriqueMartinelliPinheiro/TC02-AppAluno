@@ -25,12 +25,12 @@ const useGovBrAuth = () => {
 					});
 
 					console.log('Fetch response status:', response.status);
-
+					console.log;
 					if (response.ok) {
 						const data = await response.json();
 						console.log('Response data:', data);
 						if (data.studentCpf) {
-							setStudentCpf(data.studentCpf); // Definição direta no contexto
+							setStudentCpf(data.studentCpf);
 							console.log('studentCpf set in fetchAccessToken:', data.studentCpf);
 							navigate('/', { replace: true });
 						} else {
