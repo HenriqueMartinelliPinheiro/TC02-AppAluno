@@ -13,10 +13,11 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [studentCpf, setStudentCpfState] = useState<string | null>(null);
-	const [loading, setLoading] = useState(true); // Estado de `loading`
+	const [loading, setLoading] = useState(true);
 
 	const setStudentCpf = (cpf: string | null) => {
 		setStudentCpfState(cpf);
+		console.log('studentCpf set:', cpf);
 		if (cpf) {
 			localStorage.setItem('studentCpf', cpf);
 			console.log('studentCpf saved to localStorage:', cpf);
