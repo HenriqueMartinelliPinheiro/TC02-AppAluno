@@ -18,8 +18,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		setStudentCpfState(cpf);
 		if (cpf) {
 			localStorage.setItem('studentCpf', cpf);
+			console.log('studentCpf set:', cpf);
 		} else {
 			localStorage.removeItem('studentCpf');
+			console.log('studentCpf cleared');
 		}
 	};
 
@@ -27,11 +29,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		const savedCpf = localStorage.getItem('studentCpf');
 		if (savedCpf) {
 			setStudentCpfState(savedCpf);
+			console.log('studentCpf loaded from storage:', savedCpf);
 		}
 		setLoading(false);
+		console.log('Loading complete');
 	}, []);
 
 	const isAuthenticated = !!studentCpf;
+	console.log('Auth status:', { isAuthenticated, studentCpf, loading });
 
 	const logout = () => {
 		setStudentCpf(null);

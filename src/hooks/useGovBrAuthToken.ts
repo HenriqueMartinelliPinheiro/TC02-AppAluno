@@ -13,11 +13,13 @@ const useGovBrAuth = () => {
 			const queryParams = new URLSearchParams(location.search);
 			const code = queryParams.get('code');
 
+			console.log('Code found in URL:', code);
+
 			if (code) {
 				const success = await fetchAccessToken(code);
+				console.log('Authentication success:', success);
 
 				if (success) {
-					console.log('Autenticado com gov.br.');
 					navigate('/', { replace: true });
 				} else {
 					console.error('Erro ao autenticar com gov.br.');

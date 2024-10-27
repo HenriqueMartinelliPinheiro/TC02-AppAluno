@@ -1,3 +1,4 @@
+// services/authService.ts
 import { apiRoutes } from '@/config/apiRoutes';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -13,6 +14,8 @@ export const useAuthService = () => {
 				},
 				body: JSON.stringify({ code }),
 			});
+
+			console.log('Fetch response status:', response.status);
 
 			if (response.ok) {
 				const data = await response.json();
