@@ -6,26 +6,25 @@ interface AuthContextProps {
 	isAuthenticated: boolean;
 	setStudentCpf: (cpf: string) => void;
 	logout: () => void;
-	loading: boolean;
+	loading: boolean; // Adicionando `loading` novamente
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [studentCpf, setStudentCpfState] = useState<string | null>(null);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(true); // Estado de `loading`
 
-const setStudentCpf = (cpf: string | null) => {
-    setStudentCpfState(cpf);
-    if (cpf) {
-        localStorage.setItem('studentCpf', cpf);
-        console.log('studentCpf saved to localStorage:', cpf); // Log para confirmação
-    } else {
-        localStorage.removeItem('studentCpf');
-        console.log('studentCpf removed from localStorage'); // Confirmação de remoção
-    }
-};
-
+	const setStudentCpf = (cpf: string | null) => {
+		setStudentCpfState(cpf);
+		if (cpf) {
+			localStorage.setItem('studentCpf', cpf);
+			console.log('studentCpf saved to localStorage:', cpf);
+		} else {
+			localStorage.removeItem('studentCpf');
+			console.log('studentCpf removed from localStorage');
+		}
+	};
 
 	useEffect(() => {
 		const savedCpf = localStorage.getItem('studentCpf');
@@ -35,7 +34,7 @@ const setStudentCpf = (cpf: string | null) => {
 		} else {
 			console.log('No studentCpf found in localStorage');
 		}
-		setLoading(false);
+		setLoading(false); // Define `loading` como false após a verificação
 		console.log('Loading complete');
 	}, []);
 
