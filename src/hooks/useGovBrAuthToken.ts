@@ -1,11 +1,9 @@
-// hooks/useGovBrAuth.ts
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext'; // Acesso direto ao contexto
 import { apiRoutes } from '@/config/apiRoutes';
 
 const useGovBrAuth = () => {
-	console.log
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { setStudentCpf } = useAuth();
