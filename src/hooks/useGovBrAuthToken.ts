@@ -35,7 +35,6 @@ const useGovBrAuth = () => {
 							navigate('/login', { replace: true });
 						}
 					} else {
-						console.error('Erro ao obter o token de acesso:', response.statusText);
 						navigate('/login', { replace: true });
 					}
 				} catch (error) {
