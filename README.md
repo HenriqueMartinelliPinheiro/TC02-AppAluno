@@ -2,8 +2,14 @@ Protótipo de Aplicação para os alunos do IFC Videira registrarem presença no
 
 ## Telas
 
-### Login Aluno ![Figura 1: Login Aluno](/telas/loginAluno.png)
+### Login Aluno
 
-### Listagem de Eventos ![Figura 2: Listagem de Eventos Aluno](/telas/listaEventosAluno.png)
+![Figura 1: Login Aluno](/telas/loginAluno.png)
 
-### Listagem de Atividades ![Figura 3: listaAtividadesAluno](/telas/listaAtividadesAluno.png)
+### Listagem de Eventos
+
+![Figura 2: Listagem de Eventos Aluno](/telas/listaEventosAluno.png)
+
+### Listagem de Atividades
+
+![Figura 3: listaAtividadesAluno](/telas/listaAtividadesAluno.png)
